@@ -13,6 +13,8 @@ class _ConsultaUserState extends State<ConsultaUser> {
         "TmuFKJIQLB78RF2Ir8asU5fiopyQj6cUE7CwoPP3kKWKQGTRpvswBB7SSqrLkcnm"
   });
 
+  final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
+
   var listUsers;
   bool _carregando = true;
 
@@ -56,9 +58,41 @@ class _ConsultaUserState extends State<ConsultaUser> {
     }
   """;
 
+  Future<bool> deleteInfo(codigo) async {
+    try {
+      var snapshot = _hasuraConnect.mutation(_deleteUser(codigo));
+
+      snapshot.then((value) {
+        print(value);
+      });
+      return true;
+    } catch (e) {
+      return false;
+    }
+  }
+
+  String _deleteUser(codigo) {
+    return """
+    mutation MyMutation {
+      delete_usuarios(where: {_and: {cpf: {_eq: $codigo}}}) {
+        returning {
+          cargo_id
+          cpf
+          email
+          endereco
+          nascimento
+          nome
+          rg
+          senha
+        }
+      }
+    }""";
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: _scaffoldKey,
       body: SafeArea(
         child: Container(
           height: MediaQuery.of(context).size.height,
@@ -111,54 +145,83 @@ class _ConsultaUserState extends State<ConsultaUser> {
                                       ]),
                                   child: Row(
                                     children: [
-                                      Column(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: [
-                                          Text(
-                                            'Nome: ${listUsers[index]['nome']}',
-                                            style: TextStyle(
-                                                fontSize: 17,
-                                                color: Colors.grey[900]),
-                                          ),
-                                          Text(
-                                            'Cpf: ${listUsers[index]['cpf']}',
-                                            style: TextStyle(
-                                                fontSize: 17,
-                                                color: Colors.grey[900]),
-                                          ),
-                                          Text(
-                                            'email: ${listUsers[index]['email']}',
-                                            style: TextStyle(
-                                                fontSize: 17,
-                                                color: Colors.grey[900]),
-                                          ),
-                                          Text(
-                                            'endereco: ${listUsers[index]['endereco']}',
-                                            style: TextStyle(
-                                                fontSize: 17,
-                                                color: Colors.grey[900]),
-                                          ),
-                                          Text(
-                                            'nascimento: ${listUsers[index]['nascimento']}',
-                                            style: TextStyle(
-                                                fontSize: 17,
-                                                color: Colors.grey[900]),
-                                          ),
-                                          Text(
-                                            'rg: ${listUsers[index]['rg']}',
-                                            style: TextStyle(
-                                                fontSize: 17,
-                                                color: Colors.grey[900]),
-                                          ),
-                                          Text(
-                                            'senha: ${listUsers[index]['senha']}',
-                                            style: TextStyle(
-                                                fontSize: 17,
-                                                color: Colors.grey[900]),
-                                          ),
-                                        ],
+                                      Expanded(
+                                        child: Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            Text(
+                                              'Nome: ${listUsers[index]['nome']}',
+                                              style: TextStyle(
+                                                  fontSize: 17,
+                                                  color: Colors.grey[900]),
+                                            ),
+                                            Text(
+                                              'Cpf: ${listUsers[index]['cpf']}',
+                                              style: TextStyle(
+                                                  fontSize: 17,
+                                                  color: Colors.grey[900]),
+                                            ),
+                                            Text(
+                                              'email: ${listUsers[index]['email']}',
+                                              style: TextStyle(
+                                                  fontSize: 17,
+                                                  color: Colors.grey[900]),
+                                            ),
+                                            Text(
+                                              'endereco: ${listUsers[index]['endereco']}',
+                                              style: TextStyle(
+                                                  fontSize: 17,
+                                                  color: Colors.grey[900]),
+                                            ),
+                                            Text(
+                                              'nascimento: ${listUsers[index]['nascimento']}',
+                                              style: TextStyle(
+                                                  fontSize: 17,
+                                                  color: Colors.grey[900]),
+                                            ),
+                                            Text(
+                                              'rg: ${listUsers[index]['rg']}',
+                                              style: TextStyle(
+                                                  fontSize: 17,
+                                                  color: Colors.grey[900]),
+                                            ),
+                                            Text(
+                                              'senha: ${listUsers[index]['senha']}',
+                                              style: TextStyle(
+                                                  fontSize: 17,
+                                                  color: Colors.grey[900]),
+                                            ),
+                                          ],
+                                        ),
                                       ),
+                                      IconButton(
+                                          icon: Icon(
+                                            Icons.close,
+                                            color: Colors.red,
+                                          ),
+                                          onPressed: () async {
+                                            await deleteInfo(
+                                                    listUsers[index]['cpf'])
+                                                .then((value) {
+                                              if (value) {
+                                                _scaffoldKey.currentState
+                                                    .showSnackBar(SnackBar(
+                                                        content: Text(
+                                                            "Usuário Removido com Sucesso!")));
+                                                Navigator.of(context)
+                                                    .pushReplacement(
+                                                        MaterialPageRoute(
+                                                            builder: (context) =>
+                                                                ConsultaUser()));
+                                              } else {
+                                                _scaffoldKey.currentState
+                                                    .showSnackBar(SnackBar(
+                                                        content: Text(
+                                                            "Erro na remoção")));
+                                              }
+                                            });
+                                          }),
                                     ],
                                   ),
                                 ),

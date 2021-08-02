@@ -1,5 +1,7 @@
+import 'package:animated_text/animated_text.dart';
 import 'package:flutter/material.dart';
 import 'package:hasura_connect/hasura_connect.dart';
+import 'package:trabalhoeng/globals/globals.dart';
 
 class ConsultaUser extends StatefulWidget {
   @override
@@ -92,13 +94,43 @@ class _ConsultaUserState extends State<ConsultaUser> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: kBackgroundColor,
       key: _scaffoldKey,
+      appBar: AppBar(
+        backgroundColor: kBackgroundColor,
+        title: Text(
+          'Lista de Usuários',
+          style: TextStyle(
+              fontSize: 23,
+              color: corTextoPrimario,
+              fontWeight: FontWeight.bold),
+        ),
+      ),
       body: SafeArea(
         child: Container(
           height: MediaQuery.of(context).size.height,
           child: _carregando
               ? Center(
-                  child: CircularProgressIndicator(),
+                  child: Container(
+                    color: kBackgroundColor,
+                    width: double.infinity,
+                    height: MediaQuery.of(context).size.height,
+                    child: AnimatedText(
+                      alignment: Alignment.center,
+                      speed: Duration(milliseconds: 1000),
+                      controller: AnimatedTextController.loop,
+                      displayTime: Duration(milliseconds: 900),
+                      wordList: [
+                        'Buscando usuários...',
+                        'Aguarde',
+                      ],
+                      textStyle: TextStyle(
+                          color: Colors.white,
+                          fontSize: 30,
+                          fontFamily: 'raleway',
+                          fontWeight: FontWeight.w700),
+                    ),
+                  ),
                 )
               : listUsers.length == 0
                   ? Center(
@@ -111,15 +143,6 @@ class _ConsultaUserState extends State<ConsultaUser> {
                       shrinkWrap: true,
                       children: [
                         SizedBox(height: 25),
-                        Center(
-                          child: Text(
-                            'Listas de Usuários',
-                            style: TextStyle(
-                                fontSize: 23,
-                                color: Colors.grey[900],
-                                fontWeight: FontWeight.bold),
-                          ),
-                        ),
                         SizedBox(height: 25),
                         ListView.builder(
                           itemCount: listUsers.length,
@@ -133,16 +156,8 @@ class _ConsultaUserState extends State<ConsultaUser> {
                                   padding: EdgeInsets.fromLTRB(10, 10, 10, 10),
                                   margin: EdgeInsets.fromLTRB(10, 15, 10, 15),
                                   decoration: BoxDecoration(
-                                      color: Colors.white,
-                                      boxShadow: [
-                                        BoxShadow(
-                                          color: Colors.grey.withOpacity(0.5),
-                                          spreadRadius: 5,
-                                          blurRadius: 7,
-                                          offset: Offset(0,
-                                              3), // changes position of shadow
-                                        ),
-                                      ]),
+                                      color: Colors.white10,
+                                      boxShadow: [kDefaultShadow]),
                                   child: Row(
                                     children: [
                                       Expanded(
@@ -154,43 +169,43 @@ class _ConsultaUserState extends State<ConsultaUser> {
                                               'Nome: ${listUsers[index]['nome']}',
                                               style: TextStyle(
                                                   fontSize: 17,
-                                                  color: Colors.grey[900]),
+                                                  color: corTextoPrimario),
                                             ),
                                             Text(
                                               'Cpf: ${listUsers[index]['cpf']}',
                                               style: TextStyle(
                                                   fontSize: 17,
-                                                  color: Colors.grey[900]),
+                                                  color: corTextoPrimario),
                                             ),
                                             Text(
-                                              'email: ${listUsers[index]['email']}',
+                                              'Email: ${listUsers[index]['email']}',
                                               style: TextStyle(
                                                   fontSize: 17,
-                                                  color: Colors.grey[900]),
+                                                  color: corTextoPrimario),
                                             ),
                                             Text(
-                                              'endereco: ${listUsers[index]['endereco']}',
+                                              'Endereco: ${listUsers[index]['endereco']}',
                                               style: TextStyle(
                                                   fontSize: 17,
-                                                  color: Colors.grey[900]),
+                                                  color: corTextoPrimario),
                                             ),
                                             Text(
-                                              'nascimento: ${listUsers[index]['nascimento']}',
+                                              'Nascimento: ${listUsers[index]['nascimento']}',
                                               style: TextStyle(
                                                   fontSize: 17,
-                                                  color: Colors.grey[900]),
+                                                  color: corTextoPrimario),
                                             ),
                                             Text(
-                                              'rg: ${listUsers[index]['rg']}',
+                                              'RG: ${listUsers[index]['rg']}',
                                               style: TextStyle(
                                                   fontSize: 17,
-                                                  color: Colors.grey[900]),
+                                                  color: corTextoPrimario),
                                             ),
                                             Text(
-                                              'senha: ${listUsers[index]['senha']}',
+                                              'Senha: ${listUsers[index]['senha']}',
                                               style: TextStyle(
                                                   fontSize: 17,
-                                                  color: Colors.grey[900]),
+                                                  color: corTextoPrimario),
                                             ),
                                           ],
                                         ),
@@ -198,7 +213,7 @@ class _ConsultaUserState extends State<ConsultaUser> {
                                       IconButton(
                                           icon: Icon(
                                             Icons.close,
-                                            color: Colors.red,
+                                            color: Colors.white,
                                           ),
                                           onPressed: () async {
                                             await deleteInfo(

@@ -1,13 +1,23 @@
 import 'package:flutter/material.dart';
-import 'package:trabalhoeng/LoginScreen.dart';
+import 'package:provider/provider.dart';
+import 'package:trabalhoeng/home.dart';
+import 'package:trabalhoeng/login/login.dart';
+import 'package:trabalhoeng/login/loginFunctions.dart';
 
-void main() => runApp(HomePage());
+void main() => runApp(Splash());
 
-class HomePage extends StatelessWidget {
+class Splash extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: LoginPage(),
+    return MultiProvider(
+      providers: [
+        Provider<LoginFunctions>(create: (_) => LoginFunctions(context)),
+      ],
+      child: MaterialApp(
+        home: LoginPage(),
+      ),
     );
   }
 }
+
+class Login {}

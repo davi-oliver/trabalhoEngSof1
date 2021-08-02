@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "724124379096",
+    "project_id": "doacaoanimaisunifei",
+    "storage_bucket": "doacaoanimaisunifei.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:724124379096:android:56387131b655a9770474ad",
+        "android_client_info": {
+          "package_name": "com.example.trabalhoeng"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "724124379096-fnf5530tjq3rco8qii8job6mlqate0hp.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.trabalhoeng",
+            "certificate_hash": "689bda4c738e13a9f1e817051d820c48443b6426"
+          }
+        },
+        {
+          "client_id": "724124379096-85albmjvcov4fj6bbmrm1pmrnk5uginu.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDj9Lze1REshqCpW21_8bvO23dNcPxFtTY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "724124379096-85albmjvcov4fj6bbmrm1pmrnk5uginu.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

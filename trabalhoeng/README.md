@@ -1,16 +1,90 @@
-# trabalhoeng
+ <!-- # **Adoçao**
+ 
+ 
 
-A new Flutter application.
+<h5>Abaixo algumas telas do app</h5>
+<br>
 
-## Getting Started
+> Home 
 
-This project is a starting point for a Flutter application.
+<div style="display: inline-block">
+  <img src="/assets/telas/home.png" height="350">
+  <img src="/assets/telas/home2.png" height="350">  
+</div>
 
-A few resources to get you started if this is your first Flutter project:
+<br>
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+> Denúcias 
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+<div style="display: inline-block">
+  <img src="/assets/telas/denuncias.png" height="350">
+  <img src="/assets/telas/denunciaBanco.png" height="350">
+  
+</div>
+
+<br>
+
+> Dúvidas 
+
+<div style="display: inline-block">
+  <img src="/assets/telas/duvidas.png" height="350">
+  <img src="/assets/telas/duvidasAlert.png" height="350">  
+</div>
+
+<br>
+
+> Login
+
+<div style="display: inline-block">
+  <img src="/assets/telas/loginPage.png" height="350">
+  <img src="/assets/telas/recuperarSenha.png" height="350">
+  <img src="/assets/telas/alertRecuperar.png" height="350">
+  <img src="/assets/telas/criarConta.png" height="350">
+</div>
+
+<br>
+
+> Pesquisas
+
+<div style="display: inline-block">
+  <img src="/assets/telas/pesquisas.png" height="350">
+  <img src="/assets/telas/pesqComb.png" height="350">
+  <img src="/assets/telas/pesqCombPreco.png" height="350">
+</div>
+
+<br>
+
+> Reclamação Individual
+
+<div style="display: inline-block">
+ <img src="/assets/telas/reclamacao.png" height="350">
+
+</div>
+
+> Timeline
+
+<div style="display: inline-block">
+  <img src="/assets/telas/timeLine.png" height="350">
+ 
+</div>
+
+<br>
+> Sugestão e Contato
+
+<div style="display: inline-block">
+  <img src="/assets/telas/sugestao.png" height="350">
+  <img src="/assets/telas/contato.png" height="350">
+   
+</div>
+
+<br>
+
+> Cod. Consumidor e bloqueio Telemarketing
+
+<div style="display: inline-block">
+  <img src="/assets/telas/consumidor.png" height="350">
+  <img src="/assets/telas/tele.png" height="350">
+ 
+</div>
+
+<br> -->
